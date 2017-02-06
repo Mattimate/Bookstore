@@ -13,7 +13,7 @@ public class Service {
 	public Service() {
 		// HARD DATA
 		bookStorage.put("ScaryBook", new Book("ScaryBook", "Matt", "Horror"));
-		bookStorage.put("FunnyBook", new Book("FuunyBook", "Tom", "Comedy"));
+		bookStorage.put("FunnyBook", new Book("FunnyBook", "Tom", "Comedy"));
 	}
 
 	public void viewBooks() {
@@ -28,18 +28,25 @@ public class Service {
 		}
 	}
 
-	public void addBooks() {
+	public void addBook() {
 		String title = getUserInputs("Enter title");
 		String author = getUserInputs("Enter author");
 		String genre = getUserInputs("Enter genre");
 
-		bookStorage.put(title, new Book(title, author, genre));
-		System.out.println("Book: " + title + " has been added");
+		addToMap(new Book(title, author, genre));
 	}
 
-	public void deleteBooks(String title) {
-		bookStorage.remove(title);
-		System.out.println("Book: " + title + " has been removed");
+	private void addToMap(Book book) {
+		bookStorage.put(book.getTitle(), book);
+		System.out.println("Book: " + book.getTitle() + " has been added\n");
+	}
+
+	public String deleteBook(String title) {
+		if (bookStorage.containsKey(title)) {
+			bookStorage.remove(title);
+			return "Book: " + title + " has been removed\n";
+		}
+		return "Book: " + title + " not found\n";
 	}
 
 	public String getUserInputs(String message) {

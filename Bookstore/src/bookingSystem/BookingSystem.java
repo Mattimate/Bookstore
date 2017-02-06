@@ -22,10 +22,11 @@ public class BookingSystem {
 			service.viewBooks();
 			break;
 		case 2:
-			service.addBooks();
+			service.addBook();
 			break;
 		case 3:
-			service.deleteBooks(service.getUserInputs("Enter title"));
+			String message = service.deleteBook(service.getUserInputs("Enter title"));
+			System.out.println(message);
 			break;
 		default:
 			break;
